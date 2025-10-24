@@ -1,4 +1,3 @@
-/*
 #include <iostream>
 using namespace std;
 
@@ -83,35 +82,28 @@ void updateElement(SequentialList *list, int index, eleType value) {
 }
 
 int main() {
-    SequentialList myList;
-    initializeList(&myList, 10);
-    for (int i = 0; i < 10; ++i) {
-        insert(&myList, i, i * 10);
+    int n;
+    while (cin >> n) {
+        SequentialList s;
+        initializeList(&s, 1);
+        for (int i = 0; i < n; ++i) {
+            eleType element;
+            cin >> element;
+            insert(&s, i, element);
+        }
+        eleType ans = 1;
+        for (int i = 0; i < n; ++i) {
+            eleType element = getElement(&s, i);
+            if (element % 2 == 1) {
+                ans *= element;
+            }
+        }
+        cout << ans << endl;
     }
-    cout << "Size: " << size(&myList) << endl;
-    cout << "Is empty: " << isEmpty(&myList) << endl;
-
-    for (int i = 0; i < size(&myList); ++i) {
-        cout << getElement(&myList, i) << " ";
-    }
-    cout << endl;
-    deleteElement(&myList, 5);
-    cout << "Size: " << size(&myList) << endl;
-    updateElement(&myList, 1, 1314);
-    for (int i = 0; i < size(&myList); ++i) {
-        cout << getElement(&myList, i) << " ";
-    }
-    cout << endl;
-    int idx = findElement(&myList, 20);
-    updateElement(&myList, idx, 520);
-    for (int i = 0; i < size(&myList); ++i) {
-        cout << getElement(&myList, i) << " ";
-    }
-    cout << endl;
-    destroyList(&myList);
     return 0;
 }
-*/
+
+/*
 #include <iostream>
 using namespace std;
 
@@ -242,3 +234,4 @@ int main() {
 
     return 0;
 }
+*/
