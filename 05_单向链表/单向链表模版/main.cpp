@@ -25,6 +25,9 @@ public:
     ListNode* get(int i);
     void update(int i, eleType value);
     void print();
+    eleType sum();
+    void append(eleType value);
+    void ascInsert(eleType value);
 };
 
 LinkedList::~LinkedList() {
@@ -103,27 +106,47 @@ void LinkedList::update(int i, eleType value) {
 void LinkedList::print() {
     ListNode *curr = head;
     while (curr != NULL) {
-        cout << curr->data << " ";
+        cout << curr->data;
+        curr = curr->next;
+        if (curr != NULL) {
+            cout << " ";;
+        }else {
+            cout << endl;
+        }
+    }
+}
+
+eleType LinkedList::sum() {
+    ListNode *curr = head;
+    eleType ret = 0;
+    while (curr != NULL) {
+        ret += curr->data;
         curr = curr->next;
     }
-    cout << endl;
+    return ret;
+}
+
+void LinkedList::append(eleType value) {
+    insert(size, value);
+}
+
+void LinkedList::ascInsert(eleType value) {
+    if (size == 0) {
+        append(value);
+        return;
+    }
+    ListNode *curr = head;
+    for (int i = 0; i < size; ++i) {
+        if (value <= curr->data) {
+            insert(i, value);
+            return;
+        }
+        curr = curr->next;
+    }
+    append(value);
 }
 
 int main() {
-    LinkedList myList;
-    myList.insert(0, 1);
-    myList.insert(1, 2);
-    myList.insert(2, 3);
-    myList.insert(3, 4);
-    myList.insert(4, 5);
-    myList.print();
-    myList.remove(0);
-    myList.print();
-    cout << myList.find(2)->data << endl;
-    cout << myList.get(2)->data << endl;
-    myList.update(1,10);
-    myList.print();
-    ;
 
     return 0;
 }
